@@ -69,6 +69,16 @@ export default {
 
   created () {
     // let app = getApp()
+    // env是你云开发的环境id。
+    // const db = wx.cloud.database({ env: 'meow-helper-1b5609' })
+    // 使用云函数
+    wx.cloud.callFunction({name: 'login'}).then((res) => {
+      console.log(res)
+    })
+    this.$db.collection('User').get().then(res => {
+      console.log(res)
+      // 可以进行数据初始化
+    })
   }
 }
 </script>
