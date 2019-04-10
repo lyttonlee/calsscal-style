@@ -9,14 +9,13 @@
         <div class="role">{{userInfo.role}}</div>
       </div>
     </div>
-    <!-- <Menu></Menu> -->
-    <!-- <MySay /> -->
     <div class="content">
       <template v-for="(item, index) in menuList">
         <MyMenu 
           :key="index"
           :iconName="item.iconName"
           :menuText="item.menuText"
+          :toUrl="item.toUrl"
         />
       </template>
     </div>

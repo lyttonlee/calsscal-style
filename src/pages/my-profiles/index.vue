@@ -2,8 +2,6 @@
   <div class=".page">
     <MyProfile />
     <MyProfile />
-    <!-- <MyProfile />
-    <MyProfile /> -->
   </div>
 </template>
 <script>
