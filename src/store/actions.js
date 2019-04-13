@@ -15,11 +15,12 @@ const actions = {
                 let userinfo = res.userInfo
                 // console.log(userinfo)
                 wx.cloud.callFunction({
-                  name: 'getUserRole'
+                  name: 'setUser',
+                  data: userinfo
                 }).then((res) => {
                   // console.log(res)
-                  let user = Object.assign({}, userinfo, res.result)
-                  console.log(user)
+                  let user = res.result.data
+                  // console.log(user)
                   wx.setStorage({
                     key: 'user',
                     data: user

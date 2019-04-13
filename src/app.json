@@ -1,9 +1,9 @@
 {
   "pages": [
+    "pages/index/main",
+    "pages/my-profiles/main",
     "pages/newProfile/main",
     "pages/my/main",
-    "pages/my-profiles/main",
-    "pages/index/main",
     "pages/photoGrahers/main",
     "pages/myChar/main",
     "pages/myLike/main",

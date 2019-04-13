@@ -8,6 +8,7 @@
   </view>
 </template>
 <script>
+import {randomString} from '../utils/'
 export default {
   data () {
     return {
@@ -40,7 +41,7 @@ export default {
           wx.getImageInfo({
             src: tempFilePaths[0],
             success (res) {
-              console.log(res)
+              // console.log(res)
               let {width, height} = res
               if (height / width > 1.3) {
                 // 合法的宽高比
@@ -48,7 +49,7 @@ export default {
                 // 上传图片
                 // 拼接图片名字
                 let fileType = tempFilePaths[0].split('.')[tempFilePaths[0].split('.').length - 1]
-                let fileName = (new Date()).valueOf() + tempFilePaths[0].split('.')[tempFilePaths[0].split('.').length - 2] + '.' + fileType
+                let fileName = (new Date()).valueOf() + randomString(16) + '.' + fileType
                 console.log(fileName)
                 wx.cloud.uploadFile({
                   cloudPath: fileName,

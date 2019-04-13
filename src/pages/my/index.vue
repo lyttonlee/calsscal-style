@@ -47,13 +47,15 @@ export default {
     Login () {
       wx.cloud.callFunction({
         name: 'login'
-      }).then(() => {
-        // console.log(res)
-        this.checkUserLogined()
+      }).then((res) => {
+        console.log(res)
+        if (!res.result.hasRegined) {
+          this.checkUserLogined()
+        }
       })
     }
   },
-  created () {
+  onLoad () {
     // this.userLogin()
     // 检查用户是否登录
     // wx.showLoading()

@@ -69,7 +69,12 @@
   
 </template>
 <script>
+import {randomString} from '../../utils/'
 export default {
+  model: {
+    prop: 'dataLists',
+    event: 'save'
+  },
   props: {
     mode: {
       required: true,
@@ -128,7 +133,7 @@ export default {
             // 上传图片
             // 拼接图片名字
             let fileType = tempFilePaths[0].split('.')[tempFilePaths[0].split('.').length - 1]
-            let fileName = (new Date()).valueOf() + tempFilePaths[0].split('.')[tempFilePaths[0].split('.').length - 2] + '.' + fileType
+            let fileName = (new Date()).valueOf() + randomString(16) + '.' + fileType
             console.log(fileName)
             wx.cloud.uploadFile({
               cloudPath: fileName,
@@ -187,7 +192,7 @@ export default {
             // 上传图片
             // 拼接图片名字
             let fileType = tempFilePaths[0].split('.')[tempFilePaths[0].split('.').length - 1]
-            let fileName = (new Date()).valueOf() + tempFilePaths[0].split('.')[tempFilePaths[0].split('.').length - 2] + '.' + fileType
+            let fileName = (new Date()).valueOf() + randomString(16) + '.' + fileType
             console.log(fileName)
             wx.cloud.uploadFile({
               cloudPath: fileName,
@@ -290,6 +295,8 @@ export default {
     init () {
       this.clickIndex = 5000
       this.statu = 'onAdd'
+      // this.bindParent()
+      this.$emit('save', this.dataList)
     },
     saveData () {
       this.$emit('save', this.dataList)
@@ -304,6 +311,7 @@ export default {
     }
   },
   mounted () {
+    this.saveData()
     this.autoSaveData()
   },
   beforeDestroy () {

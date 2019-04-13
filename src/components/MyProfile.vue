@@ -1,14 +1,14 @@
 <template>
   <div class="profile">
-    <image mode="aspectFit" class="img" src="../../static/images/col-1.jpg"></image>
+    <image mode="aspectFit" class="img" :src="profileInfo.coverImage.imgId"></image>
     <div class="right">
-      <div class="title">琴棋书画的优美琴棋书画的优美琴画的优美</div>
-      <div class="date">2019-3-25</div>
+      <div class="title">{{profileInfo.title}}</div>
+      <div class="date">{{profileInfo.saveTime}}</div>
       <view class="author">
-        <text class="name">{{userInfo.nickName}}</text>
-        <text class="role">{{userInfo.role}}</text>
+        <text class="name">{{user.nickName}}</text>
+        <text class="role">{{user.role}}</text>
       </view>
-      <div class="sumary">
+      <div v-if="profileInfo.status === 'published'" class="sumary">
         <div class="love">
           <text class="icon iconfont icon-xihuan1"></text> 32
         </div>
@@ -16,20 +16,49 @@
           <text class="icon iconfont icon-pinglun1"></text> 120
         </div>
       </div>
+      <div v-else class="sumary">
+        <div class="love">
+          <text class="icon iconfont icon-xihuan1"></text> {{profileInfo.status === 'edit' ? '待发布' : '审核中'}}
+        </div>
+      </div>
     </div>
   </div>
 </template>
 <script>
-import {
-  mapState
-} from 'vuex'
+// import {
+//   mapState
+// } from 'vuex'
 export default {
   data () {
-    return {}
+    return {
+      user: ''
+    }
   },
-  computed: {
-    ...mapState(['userInfo'])
+  props: {
+    profileInfo: {
+      required: true,
+      type: Object
+    }
+  },
+  methods: {
+    getAuthorByOpenid (openid) {
+      wx.cloud.callFunction({
+        name: 'getUserInfo',
+        data: {
+          openid
+        }
+      }).then((res) => {
+        // console.log(res)
+        this.user = res.result
+      })
+    }
+  },
+  created () {
+    this.getAuthorByOpenid(this.profileInfo.openid)
   }
+  // computed: {
+  //   ...mapState(['userInfo'])
+  // }
 }
 </script>
 <style lang="less" scoped>

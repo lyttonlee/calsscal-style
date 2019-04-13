@@ -1,6 +1,13 @@
+import moment from 'moment'
 function formatNumber (n) {
   const str = n.toString()
   return str[1] ? str : `0${str}`
+}
+export function randomString (length = 16) {
+  let result = ''
+  let chars = '0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ'
+  for (let i = length; i > 0; --i) result += chars[Math.floor(Math.random() * chars.length)]
+  return result
 }
 
 export function formatTime (date) {
@@ -18,7 +25,12 @@ export function formatTime (date) {
   return `${t1} ${t2}`
 }
 
+export function unixToTime (unix) {
+  return moment(unix).format('YYYY-MM-DD')
+}
+
 export default {
   formatNumber,
-  formatTime
+  formatTime,
+  randomString
 }
