@@ -1,5 +1,5 @@
 const state = {
-  userInfo: wx.getStorageSync('user') || {},
+  userInfo: '',
   hasLogin: wx.getStorageSync('user').openid || false
 }
 

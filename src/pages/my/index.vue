@@ -45,6 +45,7 @@ export default {
   methods: {
     ...mapActions(['checkUserLogined']),
     Login () {
+      console.log('start')
       wx.cloud.callFunction({
         name: 'login'
       }).then((res) => {
@@ -56,6 +57,7 @@ export default {
     }
   },
   onLoad () {
+    console.log(this.hasLogin)
     // this.userLogin()
     // 检查用户是否登录
     // wx.showLoading()

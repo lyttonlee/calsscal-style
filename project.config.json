@@ -12,6 +12,9 @@
 	"compileType": "miniprogram",
 	"appid": "wx009dc9141714a011",
 	"projectname": "classcal-style",
+	"simulatorType": "wechat",
+	"simulatorPluginLibVersion": {},
+	"libVersion": "2.7.4",
 	"condition": {
 		"search": {
 			"current": -1,
